@@ -63,5 +63,13 @@ public class HolaMundo {
 		System.out.println("Hola " + recibido);
 		
 		sc.close();
+		
+		x = 5;
+		
+		y = 4;
+		
+		int div = x / y;
+		
+		System.out.println(div);
 	}
 }
