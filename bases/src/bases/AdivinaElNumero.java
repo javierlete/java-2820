@@ -3,7 +3,6 @@ package bases;
 import java.util.Random;
 import java.util.Scanner;
 
-// Número de intentos que se han necesitado para acertar
 // Tope de intentos
 // Detección de límites
 // Selección de límites
