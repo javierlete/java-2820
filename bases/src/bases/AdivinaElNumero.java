@@ -11,10 +11,10 @@ public class AdivinaElNumero {
 		Scanner sc = new Scanner(System.in);
 
 		System.out.print("Mínimo: ");
-		int minimo = sc.nextInt();
+		int minimo = Integer.parseInt(sc.nextLine());
 		
 		System.out.print("Máximo: ");
-		int maximo = sc.nextInt();
+		int maximo = Integer.parseInt(sc.nextLine());
 
 		Integer mejorPuntuacion = null;
 		
@@ -32,8 +32,7 @@ public class AdivinaElNumero {
 				do {
 					// Pedir un número
 					System.out.print("Dime un número: ");
-					suNumero = sc.nextInt();
-					sc.nextLine();
+					suNumero = Integer.parseInt(sc.nextLine());
 
 					if (suNumero < minimo || suNumero > maximo) {
 						System.out.println("El número debe ser entre " + minimo + " y " + maximo);
