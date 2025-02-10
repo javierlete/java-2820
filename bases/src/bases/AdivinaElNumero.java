@@ -10,8 +10,20 @@ public class AdivinaElNumero {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("Mínimo: ");
-		int minimo = Integer.parseInt(sc.nextLine());
+		Integer minimo = null;
+		
+		boolean estaMal = true;
+		
+		do {
+			System.out.print("Mínimo: ");
+			
+			try {
+				minimo = Integer.parseInt(sc.nextLine());
+				estaMal = false;
+			} catch (NumberFormatException e) {
+				System.out.println("Debes introducir un número");
+			}
+		} while (estaMal);
 		
 		System.out.print("Máximo: ");
 		int maximo = Integer.parseInt(sc.nextLine());
