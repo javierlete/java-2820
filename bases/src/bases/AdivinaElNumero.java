@@ -3,19 +3,21 @@ package bases;
 import java.util.Random;
 import java.util.Scanner;
 
-// Detección de límites
 // Selección de límites
 // Preguntar si se quiere otra partida
 // Puntuación mínima
 
 public class AdivinaElNumero {
-	private static final int TOPE_INTENTOS = 10;
+	private static final int MINIMO = 1;
+	private static final int MAXIMO = 10;
+
+	private static final int TOPE_INTENTOS = 5;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
 		// Buscar un número aleatorio
-		int numero = new Random().nextInt(0, 101);
+		int numero = new Random().nextInt(MINIMO, MAXIMO + 1);
 
 		System.out.println(numero);
 
@@ -28,9 +30,16 @@ public class AdivinaElNumero {
 		boolean seHaPasado = false;
 		
 		do {
-			// Pedir un número
-			System.out.print("Dime un número: ");
-			suNumero = sc.nextInt();
+			do {
+				// Pedir un número
+				System.out.print("Dime un número: ");
+				suNumero = sc.nextInt();
+				
+				if(suNumero < MINIMO  || suNumero > MAXIMO) {
+					System.out.println("El número debe ser entre " + MINIMO + " y " + MAXIMO);
+				}
+			} while (suNumero < MINIMO  || suNumero > MAXIMO);
+			
 			intentos++;
 
 //			System.out.println(suNumero);
