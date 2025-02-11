@@ -2,11 +2,8 @@ package ejercicios;
 
 /*
  * El programa almacenará un listado de personas en un ArrayList
-<<<<<<< HEAD
  * 
  * El menú es el que está definido abajo
-=======
->>>>>>> branch 'master' of https://github.com/javierlete/java-2820.git
  */
 
 public class LocalOcupacion {
