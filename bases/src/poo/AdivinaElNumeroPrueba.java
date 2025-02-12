@@ -8,13 +8,20 @@ public class AdivinaElNumeroPrueba {
 	
 	public static void main(String[] args) {
 		
-		AdivinaElNumero aen = new AdivinaElNumero(MINIMO, MAXIMO);
+		String otraPartida;
+		AdivinaElNumero aen;
 		
 		do {
-			aen.setNumeroElegido(Consola.pedirEntero("Dime un número", MINIMO, MAXIMO));
-			System.out.println(aen.getRespuesta());
-		} while (!aen.isAcertado());
-		
-		System.out.println(aen.getIntentos());
+			aen = new AdivinaElNumero(MINIMO, MAXIMO);
+			
+			do {
+				aen.setNumeroElegido(Consola.pedirEntero("Dime un número", MINIMO, MAXIMO));
+				System.out.println(aen.getRespuesta());
+			} while (!aen.isAcertado());
+			
+			System.out.println(aen.getIntentos());
+			
+			otraPartida = Consola.pedirTexto("¿Otra partida?");
+		} while (otraPartida.equalsIgnoreCase("s"));
 	}
 }
