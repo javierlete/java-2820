@@ -14,5 +14,7 @@ public class AdivinaElNumeroPrueba {
 			aen.setNumeroElegido(Consola.pedirEntero("Dime un número", MINIMO, MAXIMO));
 			System.out.println(aen.getRespuesta());
 		} while (!aen.isAcertado());
+		
+		System.out.println(aen.getIntentos());
 	}
 }
