@@ -11,6 +11,11 @@ public class Persona {
 		setEdad(edad);
 	}
 	
+	// Constructor de copia
+	public Persona(Persona persona) {
+		this(persona.getNombre(), persona.getGenero(), persona.getEdad());
+	}
+	
 	public Persona() {
 		this("Anónimo", null, 0);
 	}
