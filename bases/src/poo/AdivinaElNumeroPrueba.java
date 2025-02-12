@@ -9,11 +9,11 @@ public class AdivinaElNumeroPrueba {
 	public static void main(String[] args) {
 		
 		String otraPartida;
-		AdivinaElNumero aen;
+		AdivinaElNumero aen = new AdivinaElNumero(MINIMO, MAXIMO);
 		
 		do {
-			aen = new AdivinaElNumero(MINIMO, MAXIMO);
-			
+			aen.resetearJuego();
+
 			do {
 				aen.setNumeroElegido(Consola.pedirEntero("Dime un número", MINIMO, MAXIMO));
 				System.out.println(aen.getRespuesta());
@@ -22,6 +22,7 @@ public class AdivinaElNumeroPrueba {
 			System.out.println(aen.getIntentos());
 			
 			otraPartida = Consola.pedirTexto("¿Otra partida?");
+			
 		} while (otraPartida.equalsIgnoreCase("s"));
 	}
 }
