@@ -16,7 +16,7 @@ public class LocalPrueba {
 		System.out.println(ipartek.getAforoActual());
 
 		ipartek.salir(responsable);
-		// ipartek.salir(new Persona("Juan", "Masculino", 34));
+		ipartek.salir(new Persona("Juan", "Masculino", 34));
 
 		System.out.println(ipartek.getAforoActual());
 
