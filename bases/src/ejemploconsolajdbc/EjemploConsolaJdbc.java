@@ -1,17 +1,13 @@
 package ejemploconsolajdbc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
+import bibliotecas.BaseDeDatos;
 import bibliotecas.Consola;
 
 public class EjemploConsolaJdbc {
-	private static final String URL = "jdbc:sqlite:bdd/ejemplo.sqlite";
-	private static final String USER = "";
-	private static final String PASS = "";
+	private static final BaseDeDatos BDD = new BaseDeDatos("jdbc:sqlite:bdd/ejemplo.sqlite", "", "");
 	
 	private static final String SQL_SELECT = "SELECT * FROM productos";
 	private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE id=";
@@ -74,7 +70,7 @@ public class EjemploConsolaJdbc {
 	}
 
 	private static void listado() {
-		try (ResultSet rs = consulta(SQL_SELECT)) {
+		try (ResultSet rs = BDD.consulta(SQL_SELECT)) {
 			while (rs.next()) {
 				mostrarRegistro(rs);
 			}
@@ -86,7 +82,7 @@ public class EjemploConsolaJdbc {
 	private static void buscarPorId() {
 		int id = Consola.pedirEntero("Dime el id a buscar");
 
-		try (ResultSet rs = consulta(SQL_SELECT_ID + id)) {
+		try (ResultSet rs = BDD.consulta(SQL_SELECT_ID + id)) {
 			if (rs.next()) {
 				mostrarRegistro(rs);
 			} else {
@@ -104,7 +100,7 @@ public class EjemploConsolaJdbc {
 		
 		String sql = String.format(SQL_INSERT, nombre, precio, descripcion);
 		
-		cambio(sql);
+		BDD.cambio(sql);
 	}
 
 	private static void modificar() {
@@ -115,43 +111,13 @@ public class EjemploConsolaJdbc {
 		
 		String sql = String.format(SQL_UPDATE, nombre, precio, descripcion, id);
 		
-		cambio(sql);
+		BDD.cambio(sql);
 	}
 
 	private static void borrar() {
 		int id = Consola.pedirEntero("Dime el id a borrar");
 
-		cambio(SQL_DELETE + id);
-	}
-
-	private static Connection conectar() {
-		try {
-			return DriverManager.getConnection(URL, USER, PASS);
-		} catch (SQLException e) {
-			throw new RuntimeException("Ha fallado la conexión a la base de datos");
-		}
-	}
-	
-	private static ResultSet consulta(String sql) {
-		try {
-			Connection con = conectar();
-			Statement st = con.createStatement();
-			
-			return st.executeQuery(sql);
-		} catch (SQLException e) {
-			throw new RuntimeException("No se ha podido ejecutar la consulta");
-		}
-	}
-	
-	private static int cambio(String sql) {
-		try {
-			Connection con = conectar();
-			Statement st = con.createStatement();
-			
-			return st.executeUpdate(sql);
-		} catch (SQLException e) {
-			throw new RuntimeException("No se ha podido ejecutar la consulta");
-		}
+		BDD.cambio(SQL_DELETE + id);
 	}
 
 	private static void mostrarRegistro(ResultSet rs) throws SQLException {
