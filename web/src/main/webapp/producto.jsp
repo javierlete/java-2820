@@ -15,17 +15,22 @@ if (sId != null) {
 	p = dao.buscarPorId(id);
 }
 
+String sIdProducto = request.getParameter("idProducto");
 String nombre = request.getParameter("nombre");
 String sPrecio = request.getParameter("precio");
 String descripcion = request.getParameter("descripcion");
 
 if (nombre != null) {
-
+	Integer idProducto = sIdProducto.isBlank() ? null : Integer.parseInt(sIdProducto);
 	double precio = Double.parseDouble(sPrecio);
 
-	Producto producto = new Producto(null, nombre, precio, descripcion);
+	Producto producto = new Producto(idProducto, nombre, precio, descripcion);
 
-	dao.insertar(producto);
+	if (idProducto == null) {
+		dao.insertar(producto);
+	} else {
+		dao.modificar(producto);
+	}
 
 	response.sendRedirect("productos.jsp");
 
@@ -41,10 +46,12 @@ if (nombre != null) {
 <body>
 
 	<form>
-		<input name="nombre" placeholder="Nombre" value="<%=p != null ? p.getNombre() : ""%>">
+		<input name="idProducto" placeholder="Id"
+			value="<%=p != null ? p.getId() : ""%>"> <input name="nombre"
+			placeholder="Nombre" value="<%=p != null ? p.getNombre() : ""%>">
 		<input type="number" step=".01" name="precio" placeholder="Precio"
 			value="<%=p != null ? p.getPrecio() : ""%>">
-		<textarea name="descripcion" placeholder="Descripción"><%=p != null ? p.getDescripcion() : "" %></textarea>
+		<textarea name="descripcion" placeholder="Descripción"><%=p != null ? p.getDescripcion() : ""%></textarea>
 
 		<button>Guardar</button>
 	</form>
