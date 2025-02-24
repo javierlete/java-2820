@@ -3,6 +3,14 @@
 <%@page import="modelos.Producto"%>
 <%@page import="daos.ProductoDao"%>
 <%
+ProductoDao dao = new ProductoDao("jdbc:sqlite:C:\\Users\\java.IPARTEKAULA\\git\\java-2820\\bases\\bdd\\ejemplo.sqlite", "", "");
+
+String sId = request.getParameter("id");
+
+Integer id = Integer.parseInt(sId); 
+
+Producto p = dao.buscarPorId(id);
+
 String nombre = request.getParameter("nombre");
 String sPrecio = request.getParameter("precio");
 String descripcion = request.getParameter("descripcion");
@@ -13,7 +21,6 @@ if(nombre != null) {
 	
 	Producto producto = new Producto(null, nombre, precio, descripcion);
 	
-	ProductoDao dao = new ProductoDao("jdbc:sqlite:C:\\Users\\java.IPARTEKAULA\\git\\java-2820\\bases\\bdd\\ejemplo.sqlite", "", "");
 	
 	dao.insertar(producto);
 	
@@ -31,9 +38,9 @@ if(nombre != null) {
 <body>
 
 	<form>
-		<input name="nombre" placeholder="Nombre">
-		<input type="number" step=".01" name="precio" placeholder="Precio">
-		<textarea name="descripcion" placeholder="Descripción"></textarea>
+		<input name="nombre" placeholder="Nombre" value="<%=p.getNombre()%>">
+		<input type="number" step=".01" name="precio" placeholder="Precio" value="<%=p.getPrecio()%>">
+		<textarea name="descripcion" placeholder="Descripción"><%=p.getDescripcion()%></textarea>
 		
 		<button>Guardar</button>
 	</form>

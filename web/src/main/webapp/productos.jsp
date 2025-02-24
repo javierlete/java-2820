@@ -15,7 +15,7 @@ ProductoDao dao = new ProductoDao("jdbc:sqlite:C:\\Users\\java.IPARTEKAULA\\git\
 
 <ul>
 	<% for(Producto p: dao.buscarTodos()) { %>
-		<li><%=p.getNombre() %></li>
+		<li><a href="producto.jsp?id=<%=p.getId()%>"><%=p.getNombre()%> </a></li>
 	<% } %>
 </ul>
 
