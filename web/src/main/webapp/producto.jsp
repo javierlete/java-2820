@@ -1,18 +1,16 @@
+<%@page import="globales.Global"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="modelos.Producto"%>
 <%@page import="daos.ProductoDao"%>
 <%
-ProductoDao dao = new ProductoDao("jdbc:sqlite:C:\\Users\\java.IPARTEKAULA\\git\\java-2820\\bases\\bdd\\ejemplo.sqlite",
-		"", "");
-
 String sId = request.getParameter("id");
 
 Producto p = null;
 
 if (sId != null) {
 	Integer id = Integer.parseInt(sId);
-	p = dao.buscarPorId(id);
+	p = Global.DAO.buscarPorId(id);
 }
 
 String sIdProducto = request.getParameter("idProducto");
@@ -27,9 +25,9 @@ if (nombre != null) {
 	Producto producto = new Producto(idProducto, nombre, precio, descripcion);
 
 	if (idProducto == null) {
-		dao.insertar(producto);
+		Global.DAO.insertar(producto);
 	} else {
-		dao.modificar(producto);
+		Global.DAO.modificar(producto);
 	}
 
 	response.sendRedirect("productos.jsp");
