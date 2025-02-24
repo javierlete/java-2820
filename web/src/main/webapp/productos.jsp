@@ -5,6 +5,15 @@
 <%
 ProductoDao dao = new ProductoDao("jdbc:sqlite:C:\\Users\\java.IPARTEKAULA\\git\\java-2820\\bases\\bdd\\ejemplo.sqlite",
 		"", "");
+
+String sIdBorrar = request.getParameter("idBorrar");
+
+if(sIdBorrar != null) {
+	Integer idBorrar = Integer.parseInt(sIdBorrar);
+	
+	dao.borrar(idBorrar);
+}
+
 %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +28,7 @@ ProductoDao dao = new ProductoDao("jdbc:sqlite:C:\\Users\\java.IPARTEKAULA\\git\
 		for (Producto p : dao.buscarTodos()) {
 		%>
 		<li><a href="producto.jsp?id=<%=p.getId()%>"><%=p.getNombre()%>
-		</a></li>
+		</a> <a href="productos.jsp?idBorrar=<%=p.getId()%>">Borrar</a></li>
 		<%
 		}
 		%>
