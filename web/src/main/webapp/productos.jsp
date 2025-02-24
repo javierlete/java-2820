@@ -1,8 +1,6 @@
-<%@page import="globales.Global"%>
-<%@page import="modelos.Producto"%>
-<%@page import="daos.ProductoDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/includes/cabecera.jsp" %>
 <%
 String sIdBorrar = request.getParameter("idBorrar");
 
@@ -13,13 +11,6 @@ if(sIdBorrar != null) {
 }
 
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Ejemplo de JDBC con DAO en Web</title>
-</head>
-<body>
 
 	<ul>
 		<%
@@ -37,5 +28,4 @@ if(sIdBorrar != null) {
 		<a href="producto.jsp">Añadir</a>
 	</div>
 
-</body>
-</html>
+<%@ include file="/includes/pie.jsp" %>

@@ -1,8 +1,8 @@
-<%@page import="globales.Global"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="modelos.Producto"%>
-<%@page import="daos.ProductoDao"%>
+
+<%@ include file="/includes/cabecera.jsp" %>
+
 <%
 String sId = request.getParameter("id");
 
@@ -35,13 +35,6 @@ if (nombre != null) {
 	return;
 }
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Formulario de producto</title>
-</head>
-<body>
 
 	<form>
 		<input name="idProducto" placeholder="Id"
@@ -53,6 +46,4 @@ if (nombre != null) {
 
 		<button>Guardar</button>
 	</form>
-
-</body>
-</html>
+<%@ include file="/includes/pie.jsp" %>
