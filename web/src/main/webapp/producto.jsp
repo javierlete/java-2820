@@ -4,39 +4,10 @@
 <%@ include file="/includes/cabecera.jsp" %>
 
 <%
-String sId = request.getParameter("id");
-
-Producto p = null;
-
-if (sId != null) {
-	Integer id = Integer.parseInt(sId);
-	p = Global.DAO.buscarPorId(id);
-}
-
-String sIdProducto = request.getParameter("idProducto");
-String nombre = request.getParameter("nombre");
-String sPrecio = request.getParameter("precio");
-String descripcion = request.getParameter("descripcion");
-
-if (nombre != null) {
-	Integer idProducto = sIdProducto.isBlank() ? null : Integer.parseInt(sIdProducto);
-	double precio = Double.parseDouble(sPrecio);
-
-	Producto producto = new Producto(idProducto, nombre, precio, descripcion);
-
-	if (idProducto == null) {
-		Global.DAO.insertar(producto);
-	} else {
-		Global.DAO.modificar(producto);
-	}
-
-	response.sendRedirect("productos.jsp");
-
-	return;
-}
+Producto p = (Producto)request.getAttribute("producto");
 %>
 
-	<form>
+	<form method="post">
 		<input name="idProducto" placeholder="Id"
 			value="<%=p != null ? p.getId() : ""%>"> <input name="nombre"
 			placeholder="Nombre" value="<%=p != null ? p.getNombre() : ""%>">
