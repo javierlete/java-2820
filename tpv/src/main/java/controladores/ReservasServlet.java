@@ -16,7 +16,9 @@ public class ReservasServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReservaDao dao = new ReservaDao("jdbc:sqlite:C:\\Users\\java.IPARTEKAULA\\git\\java-2820\\tpv\\bdd\\tpv.sqlite", "", "");
 		
-		response.getWriter().println(dao.buscarTodos());
+		request.setAttribute("reservas",  dao.buscarTodos());
+		
+		request.getRequestDispatcher("/WEB-INF/vistas/reservas.jsp").forward(request, response);
 	}
 
 }
