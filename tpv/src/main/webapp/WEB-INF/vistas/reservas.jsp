@@ -15,6 +15,16 @@ ArrayList<Reserva> reservas = (ArrayList<Reserva>)request.getAttribute("reservas
 <body>
 	<h1>Reservas</h1>
 	
-	<pre><%=reservas %></pre>
+	<ul>
+		<% for(Reserva r: reservas) { %>
+			<li>
+				<%=r.getHora()%>
+				:
+				<%=r.getParaCuantos()%>
+				para
+				<%=r.getNombreCliente()%>
+			</li>
+		<% } %>
+	</ul>
 </body>
 </html>
