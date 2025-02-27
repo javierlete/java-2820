@@ -15,6 +15,14 @@ ArrayList<Reserva> reservas = (ArrayList<Reserva>)request.getAttribute("reservas
 <body>
 	<h1>Reservas</h1>
 	
+	<form>
+		<input name="hora" type="datetime-local" placeholder="Hora">
+		<input name="cuantos" type="number" placeholder="Cuantos">
+		<input name="cliente" placeholder="Cliente">
+		
+		<button>Añadir</button>
+	</form>
+	
 	<ul>
 		<% for(Reserva r: reservas) { %>
 			<li>
@@ -26,5 +34,6 @@ ArrayList<Reserva> reservas = (ArrayList<Reserva>)request.getAttribute("reservas
 			</li>
 		<% } %>
 	</ul>
+	
 </body>
 </html>
