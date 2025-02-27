@@ -16,12 +16,13 @@ import modelos.Reserva;
 public class ReservasServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static final Dao<Reserva> DAO = new ReservaDao(
+			"jdbc:sqlite:C:\\Users\\java.IPARTEKAULA\\git\\java-2820\\tpv\\bdd\\tpv.sqlite", "", "");
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Dao<Reserva> dao = new ReservaDao(
-				"jdbc:sqlite:C:\\Users\\java.IPARTEKAULA\\git\\java-2820\\tpv\\bdd\\tpv.sqlite", "", "");
 
-		request.setAttribute("reservas", dao.buscarTodos());
+		request.setAttribute("reservas", DAO.buscarTodos());
 
 		request.getRequestDispatcher("/WEB-INF/vistas/reservas.jsp").forward(request, response);
 	}
@@ -41,7 +42,7 @@ public class ReservasServlet extends HttpServlet {
 		Reserva reserva = new Reserva(null, cliente, cuantos, hora);
 		
 //		Ejecutar la lógica de negocio
-		System.out.println(reserva);
+		DAO.insertar(reserva);
 		
 //		Almacenar objeto de modelo para la vista
 		
