@@ -15,7 +15,7 @@ ArrayList<Reserva> reservas = (ArrayList<Reserva>)request.getAttribute("reservas
 <body>
 	<h1>Reservas</h1>
 	
-	<form>
+	<form method="post">
 		<input name="hora" type="datetime-local" placeholder="Hora">
 		<input name="cuantos" type="number" placeholder="Cuantos">
 		<input name="cliente" placeholder="Cliente">
