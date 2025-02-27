@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import bibliotecas.BaseDeDatos;
 import modelos.Mesa;
 
-public class MesaDao {
+public class MesaDao implements Dao<Mesa> {
 
 	private static final String SQL_SELECT = "SELECT * FROM mesas";
 	private BaseDeDatos bdd;

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import bibliotecas.BaseDeDatos;
 import modelos.Reserva;
 
-public class ReservaDao {
+public class ReservaDao implements Dao<Reserva> {
 	private static final String SQL_SELECT = "SELECT * FROM reservas";
 	private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE id=";
 
