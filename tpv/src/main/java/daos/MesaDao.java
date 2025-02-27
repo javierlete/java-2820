@@ -1,24 +1,35 @@
 package daos;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import bibliotecas.BaseDeDatos;
 import modelos.Mesa;
 
 public class MesaDao {
 
-	public MesaDao(String string, String string2, String string3) {
-		// TODO Auto-generated constructor stub
+	private static final String SQL_SELECT = "SELECT * FROM mesas";
+	private BaseDeDatos bdd;
+	
+	public MesaDao(String url, String user, String pass) {
+		bdd = new BaseDeDatos(url, user, pass);
 	}
 
 	public ArrayList<Mesa> buscarTodos() {
 		ArrayList<Mesa> mesas = new ArrayList<Mesa>();
 
-		mesas.add(new Mesa(1, 4));
-		mesas.add(new Mesa(2, 3));
-		mesas.add(new Mesa(3, 2));
-		mesas.add(new Mesa(4, 1));
-		
-		return mesas;
+		try (ResultSet rs = bdd.consulta(SQL_SELECT)) {
+			while(rs.next()) {
+				Mesa mesa = new Mesa(rs.getInt("id"), rs.getInt("capacidad"));
+				
+				mesas.add(mesa);
+			}
+			
+			return mesas;
+		} catch (SQLException e) {
+			throw new RuntimeException("No se han encontrado las mesas");
+		}
 	}
 
 }
