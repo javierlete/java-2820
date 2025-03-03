@@ -1,3 +1,4 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
@@ -17,7 +18,7 @@ ArrayList<Mesa> mesas = (ArrayList<Mesa>) request.getAttribute("mesas");
 		<button>Añadir</button>
 	</form>
 
-	<% if(session.getAttribute("usuario") != null) { %>
+	<% if(usuarioLogin != null) { %>
 
 	<ul>
 		<%
@@ -25,7 +26,7 @@ ArrayList<Mesa> mesas = (ArrayList<Mesa>) request.getAttribute("mesas");
 		%>
 		<li>
 			<form action="reserva">
-				<%=r.getHora()%>
+				<%=r.getHora().format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm"))%>
 				:
 				<%=r.getParaCuantos()%>
 				para

@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: sans-serif;
+	
+	margin: 0;
+	padding: 0;
+}
+
+ul, footer {
+	list-style: none;
+	
+	margin: 0;
+	padding: 1rem;	
+}
+
+body>nav>ul, footer {
+	display: flex;
+	justify-content: space-between;
+		
+	background-color: black;
+	color: white;
+}
+
+body>nav>ul a {
+	color: white;
+	
+	text-decoration: none;
+}
+
+body>nav {
+	margin-bottom: 1rem;
+}
+
+form {
+	padding: 1rem;
+}
+
+input, select, button {
+	border: 1px solid darkgray;
+	border-radius: .5rem;
+	padding: .5rem;
+	
+	width: 100%;
+}
+
+footer {
+	margin-top: 1rem;
+}
