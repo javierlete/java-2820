@@ -1,21 +1,10 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="modelos.Mesa"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 <%
 @SuppressWarnings("unchecked")
 ArrayList<Mesa> mesas = (ArrayList<Mesa>) request.getAttribute("mesas");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Mesas</title>
-</head>
-<body>
-	
-	<p><%=session.getAttribute("usuario") %></p>
-
 	<table>
 		<thead>
 			<tr>
@@ -37,6 +26,5 @@ ArrayList<Mesa> mesas = (ArrayList<Mesa>) request.getAttribute("mesas");
 			%>
 		</tbody>
 	</table>
-
-</body>
-</html>
+	
+<%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>

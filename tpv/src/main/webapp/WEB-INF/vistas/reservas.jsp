@@ -1,8 +1,6 @@
-<%@page import="modelos.Mesa"%>
-<%@page import="modelos.Reserva"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 <%
 @SuppressWarnings("unchecked")
 ArrayList<Reserva> reservas = (ArrayList<Reserva>) request.getAttribute("reservas");
@@ -10,16 +8,6 @@ ArrayList<Reserva> reservas = (ArrayList<Reserva>) request.getAttribute("reserva
 @SuppressWarnings("unchecked")
 ArrayList<Mesa> mesas = (ArrayList<Mesa>) request.getAttribute("mesas");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Reservas</title>
-</head>
-<body>
-	<h1>Reservas</h1>
-
-	<p><%=session.getAttribute("usuario") %></p>
 
 	<form method="post">
 		<input name="hora" type="datetime-local" placeholder="Hora"> <input
@@ -71,5 +59,5 @@ ArrayList<Mesa> mesas = (ArrayList<Mesa>) request.getAttribute("mesas");
 	</ul>
 
 	<% } %>
-</body>
-</html>
+
+<%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>
