@@ -31,6 +31,14 @@ ArrayList<Reserva> reservas = (ArrayList<Reserva>)request.getAttribute("reservas
 				<%=r.getParaCuantos()%>
 				para
 				<%=r.getNombreCliente()%>
+				
+				<select>
+					<option>NO</option>
+					<option>1</option>
+					<option>2</option>
+				</select>
+				
+				<button>Reservar</button>
 			</li>
 		<% } %>
 	</ul>
