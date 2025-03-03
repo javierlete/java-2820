@@ -26,7 +26,11 @@ public class ReservaServlet extends HttpServlet {
 		Reserva reserva = new Reserva(id, null, null, null, mesa);
 		
 //		Ejecutar la lógica de negocio
-		System.out.println(reserva);
+		Reserva aModificar = ReservasServlet.DAO_RESERVAS.buscarPorId(reserva.getId());
+		
+		aModificar.setMesa(reserva.getMesa());
+		
+		ReservasServlet.DAO_RESERVAS.modificar(aModificar);
 		
 //		Almacenar objeto de modelo para la vista
 //		Saltar a la siguiente vista

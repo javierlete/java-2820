@@ -1,3 +1,4 @@
+<%@page import="modelos.Mesa"%>
 <%@page import="modelos.Reserva"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,6 +6,9 @@
 <%
 @SuppressWarnings("unchecked")
 ArrayList<Reserva> reservas = (ArrayList<Reserva>)request.getAttribute("reservas");
+
+@SuppressWarnings("unchecked")
+ArrayList<Mesa> mesas = (ArrayList<Mesa>)request.getAttribute("mesas");
 %>
 <!DOCTYPE html>
 <html>
@@ -23,6 +27,8 @@ ArrayList<Reserva> reservas = (ArrayList<Reserva>)request.getAttribute("reservas
 		<button>Añadir</button>
 	</form>
 	
+	<pre><%=mesas %></pre>
+	
 	<ul>
 		<% for(Reserva r: reservas) { %>
 			<li>
@@ -36,9 +42,11 @@ ArrayList<Reserva> reservas = (ArrayList<Reserva>)request.getAttribute("reservas
 					<input type="hidden" name="id" value="<%=r.getId()%>">
 					
 					<select name="mesa">
-						<option>NO</option>
-						<option>1</option>
-						<option>2</option>
+						<option value="0">NO</option>
+						
+						<% for(Mesa m: mesas) { %>
+							<option <%=r.getMesa() == m.getId() ? "selected" : "" %>><%=m.getId() %></option>
+						<% } %>
 					</select>
 					
 					<button>Reservar</button>

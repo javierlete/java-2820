@@ -12,8 +12,8 @@ public class ReservaDao implements Dao<Reserva> {
 	private static final String SQL_SELECT = "SELECT * FROM reservas";
 	private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE id=";
 
-	private static final String SQL_INSERT = "INSERT INTO reservas (nombre, cuantos, hora) VALUES ('%s', %s, '%s')";
-	private static final String SQL_UPDATE = "UPDATE reservas SET nombre='%s', cuantos=%s, hora='%s' WHERE id=%s";
+	private static final String SQL_INSERT = "INSERT INTO reservas (nombre, cuantos, hora, id_mesa) VALUES ('%s', %s, '%s', %s)";
+	private static final String SQL_UPDATE = "UPDATE reservas SET nombre='%s', cuantos=%s, hora='%s', id_mesa=%s WHERE id=%s";
 	private static final String SQL_DELETE = "DELETE FROM reservas WHERE id=";
 
 	private BaseDeDatos bdd;
@@ -29,10 +29,12 @@ public class ReservaDao implements Dao<Reserva> {
 			while (rs.next()) {
 				Integer id = rs.getInt("id");
 				String nombre = rs.getString("nombre");
-				int cuantos = rs.getInt("cuantos");
+				Integer cuantos = rs.getInt("cuantos");
+				Integer mesa = rs.getInt("id_mesa");
+				
 				LocalDateTime hora = LocalDateTime.parse(rs.getString("hora"));
 
-				Reserva reserva = new Reserva(id, nombre, cuantos, hora);
+				Reserva reserva = new Reserva(id, nombre, cuantos, hora, mesa);
 
 				reservas.add(reserva);
 			}
@@ -50,10 +52,11 @@ public class ReservaDao implements Dao<Reserva> {
 
 			if (rs.next()) {
 				String nombre = rs.getString("nombre");
-				int cuantos = rs.getInt("cuantos");
+				Integer cuantos = rs.getInt("cuantos");
 				LocalDateTime hora = LocalDateTime.parse(rs.getString("hora"));
+				Integer mesa = rs.getInt("id_mesa");
 
-				reserva = new Reserva(id, nombre, cuantos, hora);
+				reserva = new Reserva(id, nombre, cuantos, hora, mesa);
 			}
 
 			return reserva;
@@ -64,10 +67,11 @@ public class ReservaDao implements Dao<Reserva> {
 
 	public void insertar(Reserva reserva) {
 		String nombre = reserva.getNombreCliente();
-		int cuantos = reserva.getParaCuantos();
+		Integer cuantos = reserva.getParaCuantos();
 		String hora = reserva.getHora().toString();
+		Integer mesa = reserva.getMesa();
 		
-		String sql = String.format(SQL_INSERT, nombre, cuantos, hora);
+		String sql = String.format(SQL_INSERT, nombre, cuantos, hora, mesa);
 
 		bdd.cambio(sql);
 	}
@@ -75,10 +79,11 @@ public class ReservaDao implements Dao<Reserva> {
 	public void modificar(Reserva reserva) {
 		Integer id = reserva.getId();
 		String nombre = reserva.getNombreCliente();
-		int cuantos = reserva.getParaCuantos();
+		Integer cuantos = reserva.getParaCuantos();
 		String hora = reserva.getHora().toString();
+		Integer mesa = reserva.getMesa();
 		
-		String sql = String.format(SQL_UPDATE, nombre, cuantos, hora, id);
+		String sql = String.format(SQL_UPDATE, nombre, cuantos, hora, mesa, id);
 
 		bdd.cambio(sql);
 	}
