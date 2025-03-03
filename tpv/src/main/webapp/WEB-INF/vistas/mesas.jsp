@@ -13,6 +13,8 @@ ArrayList<Mesa> mesas = (ArrayList<Mesa>) request.getAttribute("mesas");
 <title>Mesas</title>
 </head>
 <body>
+	
+	<p><%=session.getAttribute("usuario") %></p>
 
 	<table>
 		<thead>
