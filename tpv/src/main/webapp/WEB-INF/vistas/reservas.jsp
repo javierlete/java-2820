@@ -19,6 +19,8 @@ ArrayList<Mesa> mesas = (ArrayList<Mesa>) request.getAttribute("mesas");
 <body>
 	<h1>Reservas</h1>
 
+	<p><%=session.getAttribute("usuario") %></p>
+
 	<form method="post">
 		<input name="hora" type="datetime-local" placeholder="Hora"> <input
 			name="cuantos" type="number" placeholder="Cuantos"> <input
@@ -26,6 +28,8 @@ ArrayList<Mesa> mesas = (ArrayList<Mesa>) request.getAttribute("mesas");
 
 		<button>Añadir</button>
 	</form>
+
+	<% if(session.getAttribute("usuario") != null) { %>
 
 	<ul>
 		<%
@@ -66,5 +70,6 @@ ArrayList<Mesa> mesas = (ArrayList<Mesa>) request.getAttribute("mesas");
 		%>
 	</ul>
 
+	<% } %>
 </body>
 </html>
