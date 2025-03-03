@@ -6,15 +6,21 @@ import java.util.Objects;
 public class Reserva {
 	private Integer id;
 	private String nombreCliente;
-	private int paraCuantos;
+	private Integer paraCuantos;
 	private LocalDateTime hora;
+	private Integer mesa;
 
-	public Reserva(Integer id, String nombreCliente, int paraCuantos, LocalDateTime hora) {
+	public Reserva(Integer id, String nombreCliente, Integer paraCuantos, LocalDateTime hora, Integer mesa) {
 		super();
 		this.id = id;
 		this.nombreCliente = nombreCliente;
 		this.paraCuantos = paraCuantos;
 		this.hora = hora;
+		this.mesa = mesa;
+	}
+	
+	public Reserva(Integer id, String nombreCliente, int paraCuantos, LocalDateTime hora) {
+		this(id, nombreCliente, paraCuantos, hora, null);
 	}
 
 	public Integer getId() {
@@ -33,11 +39,11 @@ public class Reserva {
 		this.nombreCliente = nombreCliente;
 	}
 
-	public int getParaCuantos() {
+	public Integer getParaCuantos() {
 		return paraCuantos;
 	}
 
-	public void setParaCuantos(int paraCuantos) {
+	public void setParaCuantos(Integer paraCuantos) {
 		this.paraCuantos = paraCuantos;
 	}
 
@@ -49,9 +55,17 @@ public class Reserva {
 		this.hora = hora;
 	}
 
+	public Integer getMesa() {
+		return mesa;
+	}
+
+	public void setMesa(Integer mesa) {
+		this.mesa = mesa;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(hora, id, nombreCliente, paraCuantos);
+		return Objects.hash(hora, id, mesa, nombreCliente, paraCuantos);
 	}
 
 	@Override
@@ -63,14 +77,14 @@ public class Reserva {
 		if (getClass() != obj.getClass())
 			return false;
 		Reserva other = (Reserva) obj;
-		return Objects.equals(hora, other.hora) && Objects.equals(id, other.id)
+		return Objects.equals(hora, other.hora) && Objects.equals(id, other.id) && Objects.equals(mesa, other.mesa)
 				&& Objects.equals(nombreCliente, other.nombreCliente) && paraCuantos == other.paraCuantos;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Reserva [id=%s, nombreCliente=%s, paraCuantos=%s, hora=%s]", id, nombreCliente,
-				paraCuantos, hora);
+		return String.format("Reserva [id=%s, nombreCliente=%s, paraCuantos=%s, hora=%s, mesa=%s]", id, nombreCliente,
+				paraCuantos, hora, mesa);
 	}
 
 }

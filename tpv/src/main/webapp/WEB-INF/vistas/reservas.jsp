@@ -26,19 +26,23 @@ ArrayList<Reserva> reservas = (ArrayList<Reserva>)request.getAttribute("reservas
 	<ul>
 		<% for(Reserva r: reservas) { %>
 			<li>
-				<%=r.getHora()%>
-				:
-				<%=r.getParaCuantos()%>
-				para
-				<%=r.getNombreCliente()%>
-				
-				<select>
-					<option>NO</option>
-					<option>1</option>
-					<option>2</option>
-				</select>
-				
-				<button>Reservar</button>
+				<form action="reserva">
+					<%=r.getHora()%>
+					:
+					<%=r.getParaCuantos()%>
+					para
+					<%=r.getNombreCliente()%>
+					
+					<input type="hidden" name="id" value="<%=r.getId()%>">
+					
+					<select name="mesa">
+						<option>NO</option>
+						<option>1</option>
+						<option>2</option>
+					</select>
+					
+					<button>Reservar</button>
+				</form>
 			</li>
 		<% } %>
 	</ul>
