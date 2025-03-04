@@ -18,12 +18,6 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		request.setCharacterEncoding("UTF-8");
 		
-		String error = request.getParameter("error");
-
-		System.out.println(error);
-		
-		request.setAttribute("error", error);
-		
 		request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
 	}
 
@@ -48,7 +42,9 @@ public class LoginServlet extends HttpServlet {
 //			Almacenar objeto de modelo para la vista
 //			Saltar a la siguiente vista
 //			response.setCharacterEncoding("UTF-8");
-			response.sendRedirect("login?error=" + URLEncoder.encode(MENSAJE_ERROR, "UTF-8"));
+			
+			request.setAttribute("error", MENSAJE_ERROR);
+			request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
 		}
 	}
 
