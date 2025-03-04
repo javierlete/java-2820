@@ -1,7 +1,6 @@
 package controladores;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
