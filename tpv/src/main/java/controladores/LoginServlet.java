@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,8 +13,17 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String MENSAJE_ERROR = "El usuario o contraseña son incorrectos";;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		request.setCharacterEncoding("UTF-8");
+		
+		String error = request.getParameter("error");
+
+		System.out.println(error);
+		
+		request.setAttribute("error", error);
+		
 		request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
 	}
 
@@ -37,10 +47,9 @@ public class LoginServlet extends HttpServlet {
 		} else {
 //			Almacenar objeto de modelo para la vista
 //			Saltar a la siguiente vista
-			response.sendRedirect("login");
+//			response.setCharacterEncoding("UTF-8");
+			response.sendRedirect("login?error=" + URLEncoder.encode(MENSAJE_ERROR, "UTF-8"));
 		}
-		
-
 	}
 
 }

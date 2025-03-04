@@ -51,3 +51,7 @@ input, select, button {
 footer {
 	margin-top: 1rem;
 }
+
+.error {
+	color: red;
+}
